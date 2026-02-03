@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface ISudokuBoard<T> where T : IEquatable<T>
+namespace SudokuProject.Interfaces
 {
-
-    bool IsEmpty(int row, int col);
-
-    T this[int row, int col]
+    public interface ISudokuBoard<T> where T : IEquatable<T>
     {
-        get;
-        set;
+        bool IsEmpty(int row, int col); T this[int row, int col]
+        {
+            get;
+            set;
+        }
+        int Size
+        {
+            get;
+        }
+        string ToSimpleString();
     }
-    int Size { get; }
-    string ToSimpleString();
 }
-
-
