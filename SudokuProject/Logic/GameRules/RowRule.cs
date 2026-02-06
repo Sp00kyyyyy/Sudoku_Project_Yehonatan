@@ -9,16 +9,41 @@ using System.Threading.Tasks;
 
 namespace SudokuProject.Logic.GameRules
 {
-    public class RowRule : ISudokuRule<int>
+    public class RowRule : ISudokuRule
     {
-        public bool IsValid(int row, int col, ISudokuBoard<int> board, int number)
+        public bool[,] RowRuleList;
+        public RowRule(int size)
         {
+            this.RowRuleList = new bool[size, size + 1];
+        }
+        public void Initialize(ISudokuBoard<int> board)
+        {
+            Array.Clear(this.RowRuleList, 0, this.RowRuleList.Length);
             for (int i = 0; i < board.Size; i++)
             {
-                if (board[row, i] == number && i != col)
+                for (int j = 0; j < board.Size; j++)
                 {
-                    return false;
+                    int num = board[i, j];
+                    if (num != 0)
+                    {
+                        this.RowRuleList[i, num] = true;
+                    }
                 }
+            }
+        }
+        public void Add(int row, int col, int value)
+        {
+            this.RowRuleList[row, value] = true;
+        }
+        public void Remove(int row, int col, int value)
+        {
+            this.RowRuleList[row, value] = false;
+        }
+        public bool IsValid(int row, int col, int number)
+        {
+            if (this.RowRuleList[row, number])
+            {
+                return false;
             }
             return true;
         }
