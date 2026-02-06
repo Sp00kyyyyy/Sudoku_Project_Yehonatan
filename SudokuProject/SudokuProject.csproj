@@ -116,11 +116,15 @@
     <Compile Include="Interfaces\IInputRule.cs" />
     <Compile Include="Interfaces\Iparser.cs" />
     <Compile Include="Interfaces\ISudokuBoard.cs" />
+    <Compile Include="Interfaces\ISudokuRule.cs" />
     <Compile Include="IO\InputRules\AllNumbersRule.cs" />
     <Compile Include="IO\InputRules\LengthRule.cs" />
     <Compile Include="IO\InputRules\NotNullRule.cs" />
     <Compile Include="IO\InputValidator.cs" />
     <Compile Include="IO\StringParser.cs" />
+    <Compile Include="Logic\GameRules\BoxRule.cs" />
+    <Compile Include="Logic\GameRules\ColumnRule.cs" />
+    <Compile Include="Logic\GameRules\RowRule.cs" />
     <Compile Include="Models\SudokuBoard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
