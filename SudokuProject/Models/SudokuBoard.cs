@@ -55,10 +55,14 @@ namespace SudokuProject.Models
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    strBuild.Append($"| {this.Board[i, j]} ");
+                    if (this.Board[i, j] == 0)
+                    {
+                        strBuild.Append("|   ");
+                    }
+                    else
+                        strBuild.Append($"| {this.Board[i, j]} ");
                 }
                 strBuild.AppendLine("|");
-
             }
             return strBuild.ToString();
         }

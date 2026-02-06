@@ -118,6 +118,9 @@
     <Compile Include="Interfaces\ISolver.cs" />
     <Compile Include="Interfaces\ISudokuBoard.cs" />
     <Compile Include="Interfaces\ISudokuRule.cs" />
+    <Compile Include="Interfaces\IUserInterface.cs" />
+    <Compile Include="IO\ConsoleDisplay.cs" />
+    <Compile Include="IO\ConsoleManager.cs" />
     <Compile Include="IO\InputRules\AllNumbersRule.cs" />
     <Compile Include="IO\InputRules\LengthRule.cs" />
     <Compile Include="IO\InputRules\NotNullRule.cs" />
