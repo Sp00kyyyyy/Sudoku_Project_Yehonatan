@@ -9,16 +9,23 @@ namespace SudokuProject.Logic
 {
     public class BacktrackingSolver : ISolver<int>
     {
-        private readonly List<ISudokuRule<int>> LogicRules;
-        public BacktrackingSolver(List<ISudokuRule<int>> logicRules)
+        private readonly List<ISudokuRule> LogicRules;
+        public BacktrackingSolver(List<ISudokuRule> logicRules)
         {
             this.LogicRules = logicRules;
         }
-        private bool IsValidMove(int row, int col, ISudokuBoard<int> board, int number)
+        public void Initialize(ISudokuBoard<int> board)
         {
             for (int i = 0; i < this.LogicRules.Count; i++)
             {
-                if (!(this.LogicRules[i].IsValid(row, col, board, number)))
+                this.LogicRules[i].Initialize(board);
+            }
+        }
+        private bool IsValidMove(int row, int col, int number)
+        {
+            for (int i = 0; i < this.LogicRules.Count; i++)
+            {
+                if (!(this.LogicRules[i].IsValid(row, col, number)))
                 {
                     return false;
                 }
@@ -29,7 +36,7 @@ namespace SudokuProject.Logic
         {
             int bestcol = -1;
             int bestRow = -1;
-            int minOptions = 10;
+            int minOptions = board.Size + 1;
 
             for (int i = 0; i < board.Size; i++)
             {
@@ -38,9 +45,9 @@ namespace SudokuProject.Logic
                     int count = 0;
                     if (board.IsEmpty(i, j))
                     {
-                        for (int z = 1; z <= 9; z++)
+                        for (int z = 1; z <= board.Size; z++)
                         {
-                            if (IsValidMove(i, j, board, z))
+                            if (IsValidMove(i, j, z))
                             {
                                 count++;
                             }
@@ -53,13 +60,12 @@ namespace SudokuProject.Logic
                         }
                         if (minOptions == 1)
                             return (bestRow, bestcol);
-
                     }
                 }
             }
             return (bestRow, bestcol);
         }
-        public bool Solve(ISudokuBoard<int> board)
+        public bool RecursiveSolve(ISudokuBoard<int> board)
         {
             var index = FindBestCell(board);
             int row = index.Item1;
@@ -70,19 +76,32 @@ namespace SudokuProject.Logic
             }
 
 
-            for (int num = 1; num <= 9; num++)
+            for (int num = 1; num <= board.Size; num++)
             {
-                if (IsValidMove(row, col, board, num))
+                if (IsValidMove(row, col, num))
                 {
+                    for (int i = 0; i < this.LogicRules.Count; i++)
+                    {
+                        this.LogicRules[i].Add(row, col, num);
+                    }
                     board[row, col] = num;
-                    if (Solve(board))
+                    if (RecursiveSolve(board))
                     {
                         return true;
+                    }
+                    for (int i = 0; i < this.LogicRules.Count; i++)
+                    {
+                        this.LogicRules[i].Remove(row, col, num);
                     }
                     board[row, col] = 0;
                 }
             }
             return false;
+        }
+        public bool Solve(ISudokuBoard<int> board)
+        {
+            Initialize(board);
+            return RecursiveSolve(board);
         }
     }
 }
