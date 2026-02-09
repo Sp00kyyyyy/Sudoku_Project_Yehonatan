@@ -8,6 +8,6 @@ namespace SudokuProject.Interfaces
 {
     public interface ISolver<T> where T : IEquatable<T>
     {
-        bool RecursiveSolve(ISudokuBoard<T> board);
+        bool Solve(ISudokuBoard<T> board);
     }
 }
