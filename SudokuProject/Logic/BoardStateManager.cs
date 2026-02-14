@@ -7,15 +7,26 @@ using SudokuProject.Interfaces;
 
 namespace SudokuProject.Logic
 {
+    /// <summary>
+    /// Saves and restores both board cells and mask state.
+    /// </summary>
     public class BoardStateManager
     {
         private IMaskStateManager maskState;
 
+        /// <summary>
+        /// Creates a state manager that uses mask snapshots
+        /// </summary>
         public BoardStateManager(IMaskStateManager stateManager)
         {
             this.maskState = stateManager;
         }
 
+        /// <summary>
+        /// Saves a full board snapshot plus mask snapshots
+        /// </summary>
+        /// <param name="board">Board to capture.</param>
+        /// <returns>Tuple with board copy and three mask copies.</returns>
         public (int[,], int[], int[], int[]) SaveCompleteState(ISudokuBoard<int> board)
         {
             int boardSize = board.Size;
@@ -34,6 +45,11 @@ namespace SudokuProject.Logic
             return (boardSnapshot, savedRowMasks, savedColumnMasks, savedBoxMasks);
         }
 
+        /// <summary>
+        /// Restores board cells and masks from a saved snapshot
+        /// </summary>
+        /// <param name="board">Board to restore into.</param>
+        /// <param name="savedState">Saved tuple returned by SaveCompleteState.</param>
         public void RestoreCompleteState(ISudokuBoard<int> board, (int[,], int[], int[], int[]) savedState)
         {
             (int[,] boardSnapshot, int[] rowMasks, int[] columnMasks, int[] boxMasks) = savedState;

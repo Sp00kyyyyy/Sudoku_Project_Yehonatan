@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SudokuProject.Logic
 {
+    /// <summary>
+    /// Fills easy Sudoku moves before backtracking.
+    /// </summary>
     public class ObviousMovesFiller : IObviousMovesFiller
     {
         private static int[] bitMaskToNumber = new int[1025];
@@ -14,6 +17,9 @@ namespace SudokuProject.Logic
 
         private IMaskTracker maskTracker;
 
+        /// <summary>
+        /// Creates a filler that uses mask data.
+        /// </summary>
         public ObviousMovesFiller(IMaskTracker tracker)
         {
             this.maskTracker = tracker;
@@ -23,6 +29,9 @@ namespace SudokuProject.Logic
             }
         }
 
+        /// <summary>
+        /// Builds a lookup table from one-bit mask to number.
+        /// </summary>
         private static void InitializeBitMaskToNumber()
         {
             for (int number = 0; number < 9; number++)
@@ -32,6 +41,9 @@ namespace SudokuProject.Logic
             bitMaskToNumberInitialized = true;
         }
 
+        /// <summary>
+        /// Repeats easy strategies until no new cell is filled.
+        /// </summary>
         public void FillAllObviousCells(ISudokuBoard<int> board)
         {
             bool anyChangeMade = true;
@@ -151,6 +163,7 @@ namespace SudokuProject.Logic
             }
             return foundAnyHiddenSingle;
         }
+
         private bool FillHiddenSinglesInBoxes(ISudokuBoard<int> board)
         {
             bool foundAnyHiddenSingle = false;
@@ -202,4 +215,3 @@ namespace SudokuProject.Logic
         }
     }
 }
-

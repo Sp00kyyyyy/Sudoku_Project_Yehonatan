@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SudokuProject.Logic
 {
+    /// <summary>
+    /// Solves Sudoku using obvious moves and backtracking.
+    /// </summary>
     public class Solver : ISolver<int>
     {
         private static int[] bitCount = new int[1025];
@@ -17,6 +20,9 @@ namespace SudokuProject.Logic
         private IObviousMovesFiller obviousMoves;
         private BoardStateManager stateManager;
 
+        /// <summary>
+        /// Creates a solver with all required parameters.
+        /// </summary>
         public Solver(List<ISudokuRule> rules, IMaskTracker tracker, IObviousMovesFiller obvious, BoardStateManager boardStateManager)
         {
             this.sudokuRules = rules;
@@ -30,6 +36,9 @@ namespace SudokuProject.Logic
             }
         }
 
+        /// <summary>
+        /// Builds a lookup table that maps each bitmask to its number of set bits (popcount)
+        /// </summary>
         private static void InitializeBitCount()
         {
             for (int mask = 0; mask < 1025; mask++)
@@ -46,6 +55,11 @@ namespace SudokuProject.Logic
             bitCountInitialized = true;
         }
 
+        /// <summary>
+        /// Solves the board if possible.
+        /// </summary>
+        /// <param name="board">Board to solve.</param>
+        /// <returns>True if solved; otherwise false.</returns>
         public bool Solve(ISudokuBoard<int> board)
         {
             this.maskTracker.Initialize(board.Size);
@@ -61,6 +75,9 @@ namespace SudokuProject.Logic
             return SolveUsingBacktracking(board);
         }
 
+        /// <summary>
+        /// Uses recursive backtracking to finish the solution.
+        /// </summary>
         private bool SolveUsingBacktracking(ISudokuBoard<int> board)
         {
             int bestEmptyCellRow = -1;
@@ -155,6 +172,9 @@ namespace SudokuProject.Logic
             return false;
         }
 
+        /// <summary>
+        /// Checks all rules for one candidate value.
+        /// </summary>
         private bool CheckIfNumberIsValidForAllRules(int row, int col, int number)
         {
             for (int ruleIndex = 0; ruleIndex < this.sudokuRules.Count; ruleIndex++)

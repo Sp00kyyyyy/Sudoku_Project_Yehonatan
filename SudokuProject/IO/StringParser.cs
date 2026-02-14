@@ -8,8 +8,14 @@ using SudokuProject.Models;
 
 namespace SudokuProject.IO
 {
+    /// <summary>
+    /// Converts a text board into a SudokuBoard object.
+    /// </summary>
     public class StringParser : IParser<int>
     {
+        /// <summary>
+        /// Parses input text into board cells from left to right top to bottom.
+        /// </summary>
         public ISudokuBoard<int> ParseInput(string input, int size)
         {
             ISudokuBoard<int> board = new SudokuBoard(size);
