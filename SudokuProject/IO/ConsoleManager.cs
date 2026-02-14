@@ -10,6 +10,9 @@ using System.Runtime.CompilerServices;
 
 namespace SudokuProject.IO
 {
+    /// <summary>
+    /// Coordinates input, validation, parsing, solving, and output.
+    /// </summary>
     public class ConsoleManager
     {
         private readonly IUserInterface ui;
@@ -17,6 +20,9 @@ namespace SudokuProject.IO
         private readonly InputValidator validator;
         private readonly StringParser parser;
 
+        /// <summary>
+        /// Creates a console manager
+        /// </summary>
         public ConsoleManager(IUserInterface ui, ISolver<int> solver, InputValidator validator, StringParser parser)
         {
             this.ui = ui;
@@ -25,6 +31,10 @@ namespace SudokuProject.IO
             this.parser = parser;
         }
 
+        /// <summary>
+        /// Starts an endless loop that reads and solves Sudoku boards
+        /// </summary>
+        /// <param name="size">Board width and height</param>
         public void Run(int size)
         {
             while (true)
@@ -41,12 +51,15 @@ namespace SudokuProject.IO
                         ui.ShowMessage(board.ToSimpleString());
                     }
                     else
+                    {
                         ui.ShowMessage("unsolvable sudoku");
+                    }
                 }
                 else
+                {
                     ui.ShowMessage(message);
+                }
             }
-
         }
     }
 }

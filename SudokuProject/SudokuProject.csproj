@@ -130,9 +130,6 @@
     <Compile Include="IO\StringParser.cs" />
     <Compile Include="Logic\Solver.cs" />
     <Compile Include="Logic\BoardStateManager.cs" />
-    <Compile Include="Logic\GameRules\BoxRule.cs" />
-    <Compile Include="Logic\GameRules\ColumnRule.cs" />
-    <Compile Include="Logic\GameRules\RowRule.cs" />
     <Compile Include="Logic\ObviousMovesFiller.cs" />
     <Compile Include="Logic\SudokuForbiddenNumbers.cs" />
     <Compile Include="Models\SudokuBoard.cs" />

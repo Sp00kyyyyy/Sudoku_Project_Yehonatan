@@ -7,8 +7,14 @@ using SudokuProject.Interfaces;
 
 namespace SudokuProject.IO.InputRules
 {
+    /// <summary>
+    /// Checks that input is not null.
+    /// </summary>
     public class NotNullRule : IInputRule
     {
+        /// <summary>
+        /// Validates that input exists.
+        /// </summary>
         public bool RuleValidate(string input, int size, out string errorMessage)
         {
             errorMessage = "";

@@ -7,23 +7,40 @@ using SudokuProject.Interfaces;
 
 namespace SudokuProject.Models
 {
+    /// <summary>
+    /// Represents a Sudoku board with integer cells.
+    /// </summary>
     public class SudokuBoard : ISudokuBoard<int>
     {
         private int[,] Board;
+
+        /// <summary>
+        /// Gets board width and height.
+        /// </summary>
         public int Size { get { return this.Board.GetLength(0); } }
 
+        /// <summary>
+        /// Gets or sets a cell value.
+        /// </summary>
         public int this[int row, int col]
         {
             get => this.Board[row, col];
             set => this.Board[row, col] = value;
         }
 
+        /// <summary>
+        /// Creates an empty board.
+        /// </summary>
+        /// <param name="size">Board width and height.</param>
         public SudokuBoard(int size)
         {
             this.Board = new int[size, size];
         }
 
-
+        /// <summary>
+        /// Checks if a cell is empty (value 0).
+        /// </summary>
+        /// <returns>True when the cell is 0; otherwise false.</returns>
         public bool IsEmpty(int row, int col)
         {
             if (Board[row, col].Equals(0))
@@ -33,6 +50,10 @@ namespace SudokuProject.Models
             return false;
         }
 
+        /// <summary>
+        /// Converts the board to a single-line number string.
+        /// </summary>
+        /// <returns>All cell values without separators.</returns>
         public string ToSimpleString()
         {
             string simpleString = "";
@@ -45,6 +66,11 @@ namespace SudokuProject.Models
             }
             return simpleString;
         }
+
+        /// <summary>
+        /// Builds a text view of the board.
+        /// </summary>
+        /// <returns>Formatted board text visualization.</returns>
         public override string ToString()
         {
             StringBuilder strBuild = new StringBuilder();
@@ -66,7 +92,7 @@ namespace SudokuProject.Models
 
                     if (this.Board[i, j] == 0)
                     {
-                        strBuild.Append(". ");  
+                        strBuild.Append(". ");
                     }
                     else
                     {
@@ -77,6 +103,5 @@ namespace SudokuProject.Models
             }
             return strBuild.ToString();
         }
-
     }
 }

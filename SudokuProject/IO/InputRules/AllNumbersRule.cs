@@ -7,8 +7,14 @@ using SudokuProject.Interfaces;
 
 namespace SudokuProject.IO.InputRules
 {
+    /// <summary>
+    /// Checks that all input characters are digits.
+    /// </summary>
     public class AllNumbersRule : IInputRule
     {
+        /// <summary>
+        /// Validates that input contains only numbers.
+        /// </summary>
         public bool RuleValidate(string input, int size, out string errorMessage)
         {
             errorMessage = "";
