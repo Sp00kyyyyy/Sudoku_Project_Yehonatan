@@ -34,4 +34,10 @@
       <HintPath>..\packages\SixLabors.ImageSharp.2.1.11\lib\netstandard2.0\SixLabors.ImageSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestData\*.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
