@@ -21,13 +21,13 @@ namespace SudokuProject.IO
             this.RulesList.Add(rule);
         }
 
-        public bool Validate(int size, string input, out string errorMessege)
+        public bool Validate(int size, string input, out string errorMessage)
         {
             List<IInputRule> ruleList = this.RulesList;
-            errorMessege = "";
+            errorMessage = "";
             for (int i = 0; i < ruleList.Count; i++)
             {
-                if (ruleList[i].RuleValidate(input, size, out errorMessege) == false)
+                if (ruleList[i].RuleValidate(input, size, out errorMessage) == false)
                 {
                     return false;
                 }

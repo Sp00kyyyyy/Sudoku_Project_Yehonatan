@@ -48,23 +48,35 @@ namespace SudokuProject.Models
         public override string ToString()
         {
             StringBuilder strBuild = new StringBuilder();
-            int rows = this.Size;
-            int cols = this.Board.GetLength(1);
+            int boxSize = (int)Math.Sqrt(this.Size);
 
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < this.Size; i++)
             {
-                for (int j = 0; j < cols; j++)
+                if (i % boxSize == 0 && i != 0)
                 {
+                    strBuild.AppendLine("---------------------");
+                }
+
+                for (int j = 0; j < this.Size; j++)
+                {
+                    if (j % boxSize == 0 && j != 0)
+                    {
+                        strBuild.Append("| ");
+                    }
+
                     if (this.Board[i, j] == 0)
                     {
-                        strBuild.Append("|   ");
+                        strBuild.Append(". ");  
                     }
                     else
-                        strBuild.Append($"| {this.Board[i, j]} ");
+                    {
+                        strBuild.Append($"{this.Board[i, j]} ");
+                    }
                 }
-                strBuild.AppendLine("|");
+                strBuild.AppendLine();
             }
             return strBuild.ToString();
         }
+
     }
 }

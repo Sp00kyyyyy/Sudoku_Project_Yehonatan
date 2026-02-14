@@ -30,21 +30,21 @@ namespace SudokuProject.IO
             while (true)
             {
                 string input = this.ui.GetInput();
-                string massage;
-                if (this.validator.Validate(size, input, out massage))
+                string message;
+                if (this.validator.Validate(size, input, out message))
                 {
                     ISudokuBoard<int> board = this.parser.ParseInput(input, size);
                     this.ui.PrintBoard(board);
                     if (this.solver.Solve(board))
                     {
                         ui.PrintBoard(board);
-                        Console.WriteLine(board.ToSimpleString());
+                        ui.ShowMessage(board.ToSimpleString());
                     }
                     else
                         ui.ShowMessage("unsolvable sudoku");
                 }
                 else
-                    Console.WriteLine(massage);
+                    ui.ShowMessage(message);
             }
 
         }

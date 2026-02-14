@@ -15,9 +15,9 @@ namespace SudokuProject.Logic
         private int[] boxUsedNumbersMask;
         private int[,] cellToBoxIndexLookup;
 
-        public int BoardSize { get; set; }
-        public int BoxSize { get; set; }
-        public int AllNumbersMask { get; set; }
+        public int BoardSize { get; private set; }
+        public int BoxSize { get; private set; }
+        public int AllNumbersMask { get; private set; }
 
         public void Initialize(int boardSize)
         {

@@ -30,12 +30,6 @@ namespace SudokuProject.Logic
             }
         }
 
-        public Solver(List<ISudokuRule> rules) : this(rules, new SudokuForbiddenNumbers(), null, null)
-        {
-            this.obviousMoves = new ObviousMovesFiller(maskTracker);
-            this.stateManager = new BoardStateManager(maskTracker);
-        }
-
         private static void InitializeBitCount()
         {
             for (int mask = 0; mask < 1025; mask++)

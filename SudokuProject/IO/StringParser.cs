@@ -12,7 +12,7 @@ namespace SudokuProject.IO
     {
         public ISudokuBoard<int> ParseInput(string input, int size)
         {
-            SudokuBoard board = new SudokuBoard(size);
+            ISudokuBoard<int> board = new SudokuBoard(size);
             int rows = size;
             int cols = size;
             int index = 0;

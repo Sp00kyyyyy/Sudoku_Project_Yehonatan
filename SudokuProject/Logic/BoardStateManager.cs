@@ -9,16 +9,16 @@ namespace SudokuProject.Logic
 {
     public class BoardStateManager
     {
-        private IMaskTracker maskTracker;
+        private IMaskStateManager maskState;
 
-        public BoardStateManager(IMaskTracker tracker)
+        public BoardStateManager(IMaskStateManager stateManager)
         {
-            this.maskTracker = tracker;
+            this.maskState = stateManager;
         }
 
         public (int[,], int[], int[], int[]) SaveCompleteState(ISudokuBoard<int> board)
         {
-            int boardSize = this.maskTracker.BoardSize;
+            int boardSize = board.Size;
             int[,] boardSnapshot = new int[boardSize, boardSize];
 
             for (int row = 0; row < boardSize; row++)
@@ -29,7 +29,7 @@ namespace SudokuProject.Logic
                 }
             }
 
-            (int[] savedRowMasks, int[] savedColumnMasks, int[] savedBoxMasks) = this.maskTracker.SaveCurrentMasks();
+            (int[] savedRowMasks, int[] savedColumnMasks, int[] savedBoxMasks) = this.maskState.SaveCurrentMasks();
 
             return (boardSnapshot, savedRowMasks, savedColumnMasks, savedBoxMasks);
         }
@@ -37,7 +37,7 @@ namespace SudokuProject.Logic
         public void RestoreCompleteState(ISudokuBoard<int> board, (int[,], int[], int[], int[]) savedState)
         {
             (int[,] boardSnapshot, int[] rowMasks, int[] columnMasks, int[] boxMasks) = savedState;
-            int boardSize = this.maskTracker.BoardSize;
+            int boardSize = board.Size;
 
             for (int row = 0; row < boardSize; row++)
             {
@@ -47,7 +47,7 @@ namespace SudokuProject.Logic
                 }
             }
 
-            this.maskTracker.RestoreSavedMasks(rowMasks, columnMasks, boxMasks);
+            this.maskState.RestoreSavedMasks(rowMasks, columnMasks, boxMasks);
         }
     }
 }
