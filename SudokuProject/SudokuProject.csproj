@@ -114,6 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IInputRule.cs" />
+    <Compile Include="Interfaces\IMaskTracker.cs" />
+    <Compile Include="Interfaces\IObviousMovesFiller.cs" />
     <Compile Include="Interfaces\Iparser.cs" />
     <Compile Include="Interfaces\ISolver.cs" />
     <Compile Include="Interfaces\ISudokuBoard.cs" />
@@ -126,10 +128,13 @@
     <Compile Include="IO\InputRules\NotNullRule.cs" />
     <Compile Include="IO\InputValidator.cs" />
     <Compile Include="IO\StringParser.cs" />
-    <Compile Include="Logic\BacktrackingSolver.cs" />
+    <Compile Include="Logic\Solver.cs" />
+    <Compile Include="Logic\BoardStateManager.cs" />
     <Compile Include="Logic\GameRules\BoxRule.cs" />
     <Compile Include="Logic\GameRules\ColumnRule.cs" />
     <Compile Include="Logic\GameRules\RowRule.cs" />
+    <Compile Include="Logic\ObviousMovesFiller.cs" />
+    <Compile Include="Logic\SudokuForbiddenNumbers.cs" />
     <Compile Include="Models\SudokuBoard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
