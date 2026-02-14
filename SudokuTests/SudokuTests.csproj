@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SudokuProject\Interfaces\IInputRule.cs" Link="Source\Interfaces\IInputRule.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\IMaskTracker.cs" Link="Source\Interfaces\IMaskTracker.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\IObviousMovesFiller.cs" Link="Source\Interfaces\IObviousMovesFiller.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\Iparser.cs" Link="Source\Interfaces\Iparser.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\ISolver.cs" Link="Source\Interfaces\ISolver.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\ISudokuBoard.cs" Link="Source\Interfaces\ISudokuBoard.cs" />
+    <Compile Include="..\SudokuProject\Interfaces\ISudokuRule.cs" Link="Source\Interfaces\ISudokuRule.cs" />
+
+    <Compile Include="..\SudokuProject\IO\InputValidator.cs" Link="Source\IO\InputValidator.cs" />
+    <Compile Include="..\SudokuProject\IO\StringParser.cs" Link="Source\IO\StringParser.cs" />
+    <Compile Include="..\SudokuProject\IO\InputRules\AllNumbersRule.cs" Link="Source\IO\InputRules\AllNumbersRule.cs" />
+    <Compile Include="..\SudokuProject\IO\InputRules\LengthRule.cs" Link="Source\IO\InputRules\LengthRule.cs" />
+    <Compile Include="..\SudokuProject\IO\InputRules\NotNullRule.cs" Link="Source\IO\InputRules\NotNullRule.cs" />
+
+    <Compile Include="..\SudokuProject\Logic\BoardStateManager.cs" Link="Source\Logic\BoardStateManager.cs" />
+    <Compile Include="..\SudokuProject\Logic\ObviousMovesFiller.cs" Link="Source\Logic\ObviousMovesFiller.cs" />
+    <Compile Include="..\SudokuProject\Logic\Solver.cs" Link="Source\Logic\Solver.cs" />
+    <Compile Include="..\SudokuProject\Logic\SudokuForbiddenNumbers.cs" Link="Source\Logic\SudokuForbiddenNumbers.cs" />
+
+    <Compile Include="..\SudokuProject\Models\SudokuBoard.cs" Link="Source\Models\SudokuBoard.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SixLabors.ImageSharp">
+      <HintPath>..\packages\SixLabors.ImageSharp.2.1.11\lib\netstandard2.0\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestData\*.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
