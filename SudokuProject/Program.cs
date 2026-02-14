@@ -25,13 +25,9 @@ namespace SudokuProject
 
             while (true)
             {
-                Console.WriteLine("Enter 81-digit Sudoku (0 = empty), or type exit:");
+                Console.WriteLine("Enter 81-digit Sudoku");
                 var input = Console.ReadLine();
 
-                if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
-                {
-                    return;
-                }
 
                 if (!validator.Validate(9, input, out var errorMessage))
                 {
@@ -39,7 +35,6 @@ namespace SudokuProject
                     Console.WriteLine();
                     continue;
                 }
-
                 var board = parser.ParseInput(input, 9);
                 var timer = Stopwatch.StartNew();
                 var solved = solver.Solve(board);
